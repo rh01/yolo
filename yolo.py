@@ -188,6 +188,11 @@ def detect_video(yolo, video_path, output_path=""):
     prev_time = timer()
     while True:
         return_value, frame = vid.read()
+        # add if frame is None:
+        if frame is None:
+            break
+        #print('# %d frame/total number of  frame %d' % (count, vid.get(cv2.CAP_PROP_FRAME_COUNT)))
+        # image = Image.fromarray(frame)
         image = Image.fromarray(frame)
         image = yolo.detect_image(image)
         result = np.asarray(image)
